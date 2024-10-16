@@ -1,0 +1,86 @@
+:root{
+    --main: #eeeeee;
+    --sec: #DAB651;
+    --acc: #263425;
+}
+body{
+    font-family: "Poppins", sans-serif;
+    background-color: var(--main);
+    animation-name: All;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+    
+}
+.header{
+    background: linear-gradient(rgba(0, 0, 0, 0.384), transparent ), url(./media/header.jpg);
+    background-size: cover;
+    background-position: center;
+}
+.h1{
+    letter-spacing: 4 px;
+    font-size: 4rem;
+    font-weight: 500;
+}
+h4{
+    font-weight: 200;
+}
+
+.navbar-toggler{
+    border: none;
+}
+.navbarScroll{
+    transition: 0.5s;
+    background-color: var(--acc);
+}
+
+.text-number{
+    font-weight: bold;
+    font-size: 1rem;
+    transition: 0.5;
+
+}
+.text-number:hover{
+    color: #DAB651;
+    text-decoration: underline;
+    text-underline-offset: 20px;
+
+}
+.footer{
+    background-color: var(--acc);
+    color: white;
+    min-height: 30vh;
+    padding: 20px 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@keyframes All {
+    0%{opacity: 0;
+} 100% {opacity: 1;}
+
+}
+
+
+
+
+@media screen and (max-width: 700px) {
+    h4{
+        font-size: 1rem;
+    }
+}
