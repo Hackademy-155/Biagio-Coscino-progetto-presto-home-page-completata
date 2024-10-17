@@ -32,8 +32,8 @@ let observer = new IntersectionObserver((entries)=>{
     entries.forEach((entry)=>{
         if(entry.isIntersecting && check){
 createInterval(100, firstNumber, 100);
-createInterval(100,secondNumber, 50)
-createInterval(150, thirdNumber, 20)
+createInterval(100,secondNumber, 50);
+createInterval(150, thirdNumber, 20);
 check = false;
         }
     })
