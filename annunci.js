@@ -16,12 +16,16 @@ let conteinerCards = document.querySelector('#conteinerCards');
 
 let containerCategory = document.querySelector('#containerCategory');
 
+let priceValue = document.querySelector('#priceValue')
+let priceInput = document.querySelector('#priceInput');
+let wordInput = document.querySelector('#wordInput');
+
 
 
 
 
 fetch('./annunci.json').then(response => response.json()).then(data => {
-
+data.sort((a,b)=> a.price - b.price);
 
 
     function showCards(array) {
@@ -80,6 +84,8 @@ fetch('./annunci.json').then(response => response.json()).then(data => {
     function filterByCategories(categoria) {
         if (categoria != 'All') {
             let filtered = data.filter(annuncio => annuncio.category == categoria)
+            console.log(filtered);
+            
             conteinerCards.innerHTML = ``
             showCards(filtered)
         } else {
@@ -88,7 +94,53 @@ fetch('./annunci.json').then(response => response.json()).then(data => {
             
         }
     }
+    function setPriceinput(){
+    let prices = data.map(annuncio=> Number(annuncio.price));
+    console.log(prices);
+    
+    
+    
+    
+    
+    prices.sort((a, b)=> a - b);
+    
+    
+    let maxPrice = prices.pop();
+    
+    
+    priceInput.max = maxPrice;
+    priceInput.value = maxPrice;
+    priceValue.innerHTML = `${maxPrice} $`;
+
+ }
+
+setPriceinput()
 
 
+
+  function filterByPrice(){
+    let filtered = data.filter(annuncio=> Number(annuncio.price) <= priceInput.value);
+    conteinerCards.innerHTML = ``;
+    showCards(filtered);
+    
+    
+  }
+setPriceinput();
+
+priceInput.addEventListener('input', ()=>{
+    priceValue.innerHTML = priceInput.value;
+
+            filterByPrice()
+    
+})
+function filterByWord(){
+    let filtered = data.filter(annuncio=> annuncio.name.includes(wordInput.value));
+    conteinerCards.innerHTML = ``;
+    showCards(filtered);
+
+}
+wordInput.addEventListener('input', ()=>{
+    filterByWord(data);
+})
 
 })

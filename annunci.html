@@ -109,7 +109,7 @@
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasRightLabel">Offcanvas right</h5>
+            <h5 class="offcanvas-title" id="offcanvasRightLabel">Scegli il tuo filtro</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
@@ -121,15 +121,29 @@
                        Tutte lle categorie
                     </label>
                 </div>
+                <h4 class="mt-3 fw-bold">Filtro per prezzo</h4>
+             <div>
+                 <label id="priceValue" class="form-label"></label>
+                 <input type="range" class="form-range" id="priceInput">
+             </div>
+             <!-- fitro per parola -->
+            <h4 class="mt-3 fw-bold">Filtro per parola</h4>
+            <div class="mb-3">
+                <input type="text" class="form-control" id="wordInput" placeholder="name">
             </div>
+
+            </div>
+            
+            
         </div>
+        
     </div>
 
 
 
 
 
-    <!-- footer -->
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
