@@ -19,6 +19,15 @@ let containerCategory = document.querySelector('#containerCategory');
 let priceValue = document.querySelector('#priceValue')
 let priceInput = document.querySelector('#priceInput');
 let wordInput = document.querySelector('#wordInput');
+// label
+let minimoValore = document.querySelector('#minimoValore');
+let massimoValore = document.querySelector('#massimoValore');
+
+
+// input
+let crescente = document.querySelector('#crescente');
+let decrescente = document.querySelector('#decrescente');
+
 
 
 
@@ -49,6 +58,8 @@ data.sort((a,b)=> a.price - b.price);
     }
     showCards(data)
 
+    let bottoneID;
+
 
 
 
@@ -70,7 +81,9 @@ data.sort((a,b)=> a.price - b.price);
 
             radioBtn.forEach(btn => {
                 btn.addEventListener('click', () => {
-                    filterByCategories(btn.id)
+                    // filterByCategories(btn.id)
+                    bottoneID = btn.id
+                    globalFilter()
                 })
             })
 
@@ -81,33 +94,29 @@ data.sort((a,b)=> a.price - b.price);
     radioCreate()
 
 
-    function filterByCategories(categoria) {
+    function filterByCategories(array, categoria) {
         if (categoria != 'All') {
-            let filtered = data.filter(annuncio => annuncio.category == categoria)
-            console.log(filtered);
+            let filtered = array.filter(annuncio => annuncio.category == categoria)
+            
             
             conteinerCards.innerHTML = ``
-            showCards(filtered)
+            // showCards(filtered)
+            return filtered
         } else {
+            conteinerCards.innerHTML = ``
+            return array
 
-            showCards(data)
+            // showCards(data)
             
         }
     }
+    let maxPrice;
+    let minPrice;
     function setPriceinput(){
     let prices = data.map(annuncio=> Number(annuncio.price));
-    console.log(prices);
-    
-    
-    
-    
-    
     prices.sort((a, b)=> a - b);
-    
-    
-    let maxPrice = prices.pop();
-    
-    
+    maxPrice = prices.pop();
+    minPrice = prices.shift();
     priceInput.max = maxPrice;
     priceInput.value = maxPrice;
     priceValue.innerHTML = `${maxPrice} $`;
@@ -115,32 +124,75 @@ data.sort((a,b)=> a.price - b.price);
  }
 
 setPriceinput()
+  // ordine decrescente
+  massimoValore.innerHTML = `${maxPrice} $ - ${minPrice}$`;
+  //ordine crescente
+  minimoValore.innerHTML = `${minPrice} $ - ${maxPrice}$`;
+
+  crescente.addEventListener('click', ()=>{
+      data.sort((a,b)=> a.price - b.price)
+      conteinerCards.innerHTML = ``
+      showCards(data)
+  })
+
+  decrescente.addEventListener('click', ()=>{
+      data.sort((a,b)=> b.price - a.price)
+      conteinerCards.innerHTML = ``
+      showCards(data)
+  })
 
 
-
-  function filterByPrice(){
-    let filtered = data.filter(annuncio=> Number(annuncio.price) <= priceInput.value);
+  function filterByPrice(array){
+    
+    let filtered = array.filter(annuncio=> Number(annuncio.price) <= priceInput.value);
     conteinerCards.innerHTML = ``;
-    showCards(filtered);
+    // showCards(filtered);
+    return filtered;
     
     
   }
-setPriceinput();
+
 
 priceInput.addEventListener('input', ()=>{
     priceValue.innerHTML = priceInput.value;
 
-            filterByPrice()
+            // filterByPrice()
+            globalFilter();
     
 })
-function filterByWord(){
-    let filtered = data.filter(annuncio=> annuncio.name.includes(wordInput.value));
+
+function filterByWord(array){
+    let filtered = array.filter(annuncio=> annuncio.name.includes(wordInput.value));
     conteinerCards.innerHTML = ``;
-    showCards(filtered);
+    // showCards(filtered);
+    return filtered;
 
 }
 wordInput.addEventListener('input', ()=>{
-    filterByWord(data);
-})
+    // filterByWord(data);
+    globalFilter();
+   })
+
+function globalFilter() {
+    let filtratiPerCategoria = filterByCategories(data, bottoneID);    
+    let filtratiPerPrezzo = filterByPrice(filtratiPerCategoria);
+    let filtratiPerParola = filterByWord(filtratiPerPrezzo); 
+
+
+    showCards(filtratiPerParola);
+}
+
+let reset = document.querySelector('#reset');
+  let All = document.querySelector('#All')
+  reset.addEventListener('click', ()=>{
+    crescente.checked = false;
+    decrescente.checked = false;
+    All.checked = true;
+    wordInput.value = '';
+    priceInput.value = maxPrice;
+    conteinerCards.innerHTML = '';
+    showCards(data)
+  })
+  
 
 })

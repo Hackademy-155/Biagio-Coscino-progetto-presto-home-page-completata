@@ -32,10 +32,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="./annunci.html">presto.it</a>
+                        <a class="nav-link text-light" aria-current="page" href="./annunci.html">Tutti gli annunci</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="./chi siamo">Tutti gli annunci</a>
+                        <a class="nav-link text-light" href="./chi-siamo.html">Chi siamo</a>
                     </li>
                 </ul>
             </div>
@@ -118,10 +118,20 @@
                 <div class="form-check" id="containerCategory">
                     <input class="form-check-input" type="radio"  name='category' id="All" checked>
                     <label class="form-check-label" for="All">
-                       Tutte lle categorie
+                       Tutte le categorie
                     </label>
                 </div>
                 <h4 class="mt-3 fw-bold">Filtro per prezzo</h4>
+                <div>
+                    <div>
+                        <label id ="minimoValore" for=""></label>
+                        <input id="crescente" name="valore" type="radio">
+                    </div> 
+                </div>
+                <div>
+                        <label id="massimoValore" for=""></label>
+                        <input id="decrescente" name="valore" type="radio">
+                    </div>
              <div>
                  <label id="priceValue" class="form-label"></label>
                  <input type="range" class="form-range" id="priceInput">
@@ -131,11 +141,12 @@
             <div class="mb-3">
                 <input type="text" class="form-control" id="wordInput" placeholder="name">
             </div>
+            <div>
+                <button id="reset" class="btn btn-outline-dark">reset filtri</button>
+            </div>
 
             </div>
-            
-            
-        </div>
+         </div>
         
     </div>
 

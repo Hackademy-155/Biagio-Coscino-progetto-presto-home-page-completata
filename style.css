@@ -16,6 +16,11 @@ body{
     background-size: cover;
     background-position: center;
 }
+.header-chi-siamo{
+    background: linear-gradient(rgba(0, 0, 0, 0.384), transparent ), url(./media/team2.jpg);
+    background-size: cover;
+    background-position: center;
+}
 .h1{
     letter-spacing: 4 px;
     font-size: 4rem;
@@ -51,7 +56,28 @@ h4{
     min-height: 30vh;
     padding: 20px 0;
 }
+/*swiper carosello  */
+.swiper {
+    width: 100%;
+    height: 500px;
+    border-radius: 20px;
+  }
 
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: var(--sec);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
 
 
